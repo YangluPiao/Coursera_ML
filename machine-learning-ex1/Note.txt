@@ -1,0 +1,4 @@
+1. Do normalization on both training set and test set. 
+2. If alpha(learning rate)is too big, there will be no convergence; if it is too small, 400 iterations are not enough.
+3. "theta" has to be initialized to zero before each "gradientDescentMulti" function with respect to different alpha.
+4. "theta"s calculated by gradient descent and normal equation should be different, because we often have to normalize features during gradient descent. However, the final result from the two functions (house price) should not have much differences. 
