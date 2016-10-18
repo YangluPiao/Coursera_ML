@@ -1,0 +1,5 @@
+1. DONOT regularize theta_0 in regularized logistic regression.
+2. One way to fit the data better is to create more features from each data
+point. In the provided function mapFeature.m, we will map the features into
+all polynomial terms of x1 and x2 up to the sixth power.
+3. small lambda -> may overfit;large lambda  -> may underfit.

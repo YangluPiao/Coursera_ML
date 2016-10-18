@@ -38,6 +38,7 @@ ylabel('Microchip Test 2')
 
 % Specified in plot order
 legend('y = 1', 'y = 0')
+
 hold off;
 
 
@@ -69,8 +70,8 @@ lambda = 1;
 
 fprintf('Cost at initial theta (zeros): %f\n', cost);
 
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
+%printf('\nProgram paused. Press enter to continue.\n');
+%pause;
 
 %% ============= Part 2: Regularization and Accuracies =============
 %  Optional Exercise:
@@ -95,7 +96,7 @@ options = optimset('GradObj', 'on', 'MaxIter', 400);
 % Optimize
 [theta, J, exit_flag] = ...
 	fminunc(@(t)(costFunctionReg(t, X, y, lambda)), initial_theta, options);
-
+	
 % Plot Boundary
 plotDecisionBoundary(theta, X, y);
 hold on;

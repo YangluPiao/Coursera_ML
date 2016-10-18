@@ -19,9 +19,12 @@ grad = zeros(size(theta));
 %
 % Note: grad should have the same dimensions as theta
 %
+
+
 updates=sigmoid(X*theta);
 d=-y'*(log(updates))-(1-y')*(log(1-updates));
 J=(1/m)*sum(d);
+grad=(1/m)*(updates-y)'*X;
 
 
 

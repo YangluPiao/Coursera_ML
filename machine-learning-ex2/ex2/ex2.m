@@ -73,7 +73,6 @@ fprintf(' %f \n', grad);
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-
 %% ============= Part 3: Optimizing using fminunc  =============
 %  In this exercise, you will use a built-in function (fminunc) to find the
 %  optimal parameters theta.
@@ -91,7 +90,7 @@ fprintf('Cost at theta found by fminunc: %f\n', cost);
 fprintf('theta: \n');
 fprintf(' %f \n', theta);
 
-% Plot Boundary
+%Plot Boundary
 plotDecisionBoundary(theta, X, y);
 
 % Put some labels 
@@ -106,6 +105,7 @@ hold off;
 
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
+
 
 %% ============== Part 4: Predict and Accuracies ==============
 %  After learning the parameters, you'll like to use it to predict the outcomes
