@@ -1,0 +1,2 @@
+1. Max() function: http://blog.sina.com.cn/s/blog_5c7713dd01015v2v.html
+2. Don't forget add an activation function(we use sigmoid function here) after each hidden_layer. 
