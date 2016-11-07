@@ -1,0 +1,2 @@
+1. Should make some modification on y, as showed in page5. 
+2. When computing J, we must use .* instead of *, because we need elementwise multiplication. 
