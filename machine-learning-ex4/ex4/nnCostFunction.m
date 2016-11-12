@@ -63,31 +63,58 @@ Theta2_grad = zeros(size(Theta2));
 %
 X = [ones(m, 1) X];
 a1=X;
-z1=Theta1*a1';
-a2=sigmoid(z1);
+size(a1);
+z2=Theta1*a1';
+a2=sigmoid(z2);
 a2= [ones(m,1) a2'];
-z2=Theta2*a2';
-hx=sigmoid(z2);
-
+z3=Theta2*a2';
+hx=sigmoid(z3);
+a3 = hx;
 %y(k) - the great trick - we need to recode the labels as vectors containing only values 0 or 1 (page 5 of ex4.pdf)
 yk = zeros(num_labels, m); 
 for i=1:m,
   yk(y(i),i)=1;
 end
 
-J = (1/m) * sum ( sum (  (-yk).* log(hx)  -  (1-yk).* log(1-hx) ));
+regularization = lambda/(2*m)*(sum(sum(Theta1(1:size(Theta1,1),2:size(Theta1,2)).^2))...,
+				 +sum(sum(Theta2(1:size(Theta2,1),2:size(Theta2,2)).^2)))
+
+J = (1/m) * sum ( sum (  (-yk).* log(hx)  -  (1-yk).* log(1-hx) ))+regularization;
+
+for t = 1:m
+	a1 = X(t,:); % different from a1 above, this a1 represents each row of X, which means each training example.
+	size(a1);
+	z2 = Theta1 * a1';
+
+	a2 = sigmoid(z2);
+	a2 = [1 ; a2]; % add bias
+
+	z3 = Theta2 * a2;
+
+	a3 = sigmoid(z3); % final activation layer a3 == h(theta)
 
 
+	% back propag (god bless me)	
+
+	z2=[1; z2]; % bias
+
+	delta_3 = a3 - yk(:,t); % y(k) trick - getting columns of t element
+	delta_2 = (Theta2' * delta_3) .* sigmoidGradient(z2);
+
+	% skipping sigma2(0) 
+	delta_2 = delta_2(2:end); 
+
+	Theta2_grad = Theta2_grad + delta_3 * a2';
+	Theta1_grad = Theta1_grad + delta_2 * a1; % I don't know why a1 doesn't need to be transpost (brute force try)
+end
+Theta1_grad(:, 1) = Theta1_grad(:, 1) ./ m;
+
+Theta1_grad(:, 2:end) = Theta1_grad(:, 2:end) ./ m + ((lambda/m) * Theta1(:, 2:end));
 
 
+Theta2_grad(:, 1) = Theta2_grad(:, 1) ./ m;
 
-
-
-
-
-
-
-
+Theta2_grad(:, 2:end) = Theta2_grad(:, 2:end) ./ m + ((lambda/m) * Theta2(:, 2:end));
 
 
 
